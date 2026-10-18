@@ -1,0 +1,44 @@
+@import "../../colors.css";
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: #000000;
+    color: #ffffff;
+    border-bottom: 2px solid @primary;
+}
+
+#workspaces button {
+    padding: 0 8px;
+}
+
+#workspaces button.active {
+    color: @primary;
+    text-shadow: 0 0 10px @primary;
+}
+
+#clock {
+    color: @secondary;
+    border-top: 1px solid @secondary;
+    border-bottom: 1px solid @secondary;
+    margin: 0;
+}
+
+#pulseaudio, #network, #battery {
+    color: @tertiary;
+}
+
+#custom-power {
+    color: @error;
+}
+
+/* Match Dynamic Island horizontal module spacing. */
+#custom-launcher, #clock, #pulseaudio, #network, #battery, #custom-power {
+    padding: 0 10px;
+}
