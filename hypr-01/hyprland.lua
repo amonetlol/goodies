@@ -206,7 +206,8 @@ dofile(env_file)
 -- ── Keybinds ─────────────────────────────────
 local mod = "SUPER"
 local mon = shell_quote(HOME .. "/.local/bin/mon") .. " --hypr"
-local logout = shell_quote(SCRIPTS_DIR .. "Wlogout.sh")
+--local logout = shell_quote(SCRIPTS_DIR .. "Wlogout.sh")
+local logout = shell_quote(WAYBAR_DIR .. "/scripts/power-menu.sh")
 
 local function bind_apps(modifier)
 	hl.bind(modifier .. " + W", hl.dsp.exec_cmd("firefox"))
