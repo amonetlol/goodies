@@ -1,0 +1,97 @@
+/**
+ * hypr3 emerald rofi — self-contained, rofi 2.0 compatible
+ */
+configuration {
+    modes: "drun,run,window";
+    show-icons: true;
+    icon-theme: "breeze-dark";
+    terminal: "foot";
+    font: "MesloLGM Nerd Font Mono 11";
+}
+
+* {
+    background:               #0a1414ee;
+    foreground:               #a8ffd3;
+    normal-background:        transparent;
+    normal-foreground:        #7dffc8;
+    selected-normal-background: #1a3a2a;
+    selected-normal-foreground: #5ef195;
+    alternate-normal-background: transparent;
+    alternate-normal-foreground: #7dffc8;
+    urgent-background:        transparent;
+    urgent-foreground:        #ff6b6b;
+    active-background:        transparent;
+    active-foreground:        #5ef195;
+    border-color:             #5ef195;
+    separatorcolor:           #2a4a4a;
+}
+
+window {
+    background-color: @background;
+    border:           2px solid;
+    border-color:     @border-color;
+    border-radius:    12px;
+    width:            36%;
+    location:         center;
+    padding:          0;
+}
+
+mainbox {
+    padding: 0;
+    border:  0;
+}
+
+inputbar {
+    background-color: @background;
+    text-color:       @foreground;
+    border:           2px solid;
+    border-color:     #2a4a4a;
+    border-radius:    8px;
+    padding:          10px 14px;
+    margin:           12px;
+    children:         [ prompt, textbox-prompt-colon, entry ];
+}
+
+entry {
+    text-color: @foreground;
+    cursor:     text;
+    spacing:    0;
+}
+
+prompt, textbox-prompt-colon {
+    text-color: @foreground;
+}
+
+listview {
+    padding:      4px 12px 12px;
+    spacing:      4px;
+    scrollbar:    true;
+    fixed-height: 0;
+    border:       0;
+}
+
+element {
+    padding:       8px 12px;
+    border-radius: 8px;
+    cursor:        pointer;
+    spacing:       8px;
+}
+
+element normal.normal {
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
+}
+
+element selected.normal {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       inherit;
+}
+
+element-icon {
+    size: 1.2em;
+}
