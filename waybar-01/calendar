@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+from pathlib import Path
+import calendar, datetime, locale, subprocess
+locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
+today = datetime.date.today()
+cal = calendar.TextCalendar(firstweekday=6).formatmonth(today.year,today.month)
+theme = Path(__file__).resolve().parent/'rofi/calendar.rasi'
+subprocess.run(['rofi','-no-config','-e',cal,'-theme',str(theme)])

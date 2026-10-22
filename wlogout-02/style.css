@@ -1,0 +1,66 @@
+/* ~/.config/wlogout/style.css — Catppuccin Mocha */
+
+* {
+  background-image: none;
+  font-family: "JetBrainsMono Nerd Font", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+window {
+  background-color: rgba(17, 17, 27, 0.88);
+}
+
+button {
+  color: #cdd6f4;
+  background-color: #1e1e2e;
+  border: 2px solid #313244;
+  border-radius: 24px;
+  margin: 12px;
+  background-repeat: no-repeat;
+  background-position: center 38%;
+  background-size: 30%;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+button:focus,
+button:hover {
+  background-color: #313244;
+  border-color: #74c7ec;
+  color: #74c7ec;
+  outline-style: none;
+}
+
+button:active {
+  background-color: #74c7ec;
+  color: #11111b;
+}
+
+#logout {
+  background-image: url("icons/logout.png");
+}
+
+#suspend {
+  background-image: url("icons/suspend.png");
+}
+
+#reboot {
+  background-image: url("icons/reboot.png");
+}
+
+#shutdown {
+  background-image: url("icons/shutdown.png");
+}
+
+#shutdown:hover,
+#shutdown:focus {
+  border-color: #5e81ac;
+  color: #5e81ac;
+}
+
+#lock {
+  background-image: url("icons/lock.png");
+}

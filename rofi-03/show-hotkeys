@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+"""Visor de atalhos adaptado de goodies/rofi-hotkeys para os binds Lua Vora."""
+from pathlib import Path
+import re, subprocess, os
+root=Path(__file__).resolve().parent
+source=(root/'binds-vora.lua').read_text().split('--[[')[0]
+pattern=r'(?:run|hl\.bind)\(\s*"([^"\n]+)"\s*,(.*?)(?=\n(?:run|hl\.bind)\(|\Z)'
+directions={'left':'esquerda','right':'direita','up':'acima','down':'abaixo'}
+labels={'terminal':'Abrir foot','launcher':'Abrir Rofi','power':'Menu de energia','settings':'Editar configuração Vora','wallpaper':'Escolher wallpaper','clipboard':'Histórico do clipboard','show-hotkeys':'Guia de atalhos Vora','waybar-restart':'Reiniciar Waybar','lock':'Bloquear sessão','windows':'Selecionar janela','screenshot':'Capturar tela'}
+def describe(body):
+    if 'btop' in body: return 'Abrir gerenciador de tarefas'
+    if 'hl.dsp.layout' in body:
+        m=re.search(r'layout\("([^"\n]+)',body); text=m.group(1) if m else ''
+        if text=='center': return 'Centralizar coluna'
+        if text=='colresize -conf': return 'Preset anterior de largura'
+        if text.startswith('colresize'): return 'Largura da coluna '+ ('+10%' if '+0.1' in text else '-10%')
+        if text.startswith('swapcol'): return 'Mover coluna à '+('esquerda' if text.endswith('l') else 'direita')
+    if 'fullscreen' in body: return 'Maximizar coluna' if 'maximized' in body else 'Alternar fullscreen'
+    if 'float' in body: return 'Alternar janela flutuante'
+    if 'window.close' in body: return 'Fechar janela ativa'
+    if 'window.drag' in body: return 'Arrastar janela'
+    if 'window.resize' in body: return 'Redimensionar janela'
+    if 'dpms' in body: return 'Desligar monitores'
+    if 'dsp.exit' in body: return 'Encerrar sessão'
+    m=re.search(r'workspace = ([0-9]+)',body)
+    if m: return ('Mover janela ao workspace ' if 'window.move' in body else 'Focar workspace ')+m.group(1)
+    if 'special:vora' in body: return 'Mover janela ao scratchpad Vora'
+    m=re.search(r'direction = "([a-z]+)',body)
+    if m: return ('Mover janela para ' if 'window.swap' in body else 'Focar ')+directions.get(m.group(1),m.group(1))
+    for name,label in labels.items():
+        if '/scripts/'+name in body: return label+(' — '+body.split('screenshot ',1)[1].split('"')[0] if name=='screenshot' and 'screenshot ' in body else '')
+    if 'firefox' in body: return 'Abrir Firefox'
+    if 'thunar' in body: return 'Abrir Thunar'
+    if '/mon' in body: return 'Alternar resolução do monitor'
+    if 'hyprctl reload' in body: return 'Recarregar Hyprland'
+    if 'wpctl' in body: return 'Áudio — '+('alternar mudo' if 'set-mute' in body else 'ajustar volume')
+    if 'brightnessctl' in body: return 'Ajustar brilho'
+    if 'playerctl' in body: return 'Controlar reprodução de mídia'
+    return 'Atalho da sessão'
+rows=[]
+for key,body in re.findall(pattern,source,flags=re.S):
+    rows.append(f'{key:<29} │ {describe(body)}')
+state=Path(os.environ.get('XDG_RUNTIME_DIR','/run/user/'+str(os.getuid())))/'hypr-vora-hotkeys.pid'
+if state.exists():
+    try:
+        pid=int(state.read_text())
+        if b'vora-hotkeys' in Path(f'/proc/{pid}/cmdline').read_bytes():
+            os.kill(pid,15); raise SystemExit(0)
+    except (OSError,ValueError): pass
+p=subprocess.Popen(['rofi','-no-config','-dmenu','-i','-p','Atalhos Vora','-window-title','vora-hotkeys','-theme',str(root/'hotkeys.rasi')],stdin=subprocess.PIPE,stdout=subprocess.DEVNULL,text=True)
+state.write_text(str(p.pid))
+try: p.communicate('\n'.join(rows)+'\n')
+finally: state.unlink(missing_ok=True)

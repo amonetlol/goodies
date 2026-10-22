@@ -1,0 +1,4 @@
+@import "catppuccin-mocha.rasi"
+window { width: 510px; }
+mainbox { children: [ message ]; padding: 24px; }
+textbox { font: "JetBrainsMono Nerd Font 16"; horizontal-align: 0.5; }
