@@ -75,9 +75,9 @@
   // ---------- Center ----------
   "clock": {
     "locale": "pt_BR.UTF-8",
-    "on-click": "python3 \"$VORA_WAYBAR_DIR/calendar\"",
+    //"on-click": "python3 \"$VORA_WAYBAR_DIR/calendar\"",
     "format": "\uf017  {:%H:%M}",
-    "format-alt": "\uf073  {:%A, %d %B %Y}",
+    "format-alt": "\uf073  {:L%A, %d %B %Y}",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "calendar": {
       "mode": "month",
