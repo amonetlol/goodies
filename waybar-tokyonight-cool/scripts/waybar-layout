@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# modulo da waybar: layout atual do mango (como o indicador de layout do river). Acompanha `mmsg watch monitor` e emite JSON.
+export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+icon(){ case "$1" in
+  T)  echo $'';;   # tile
+  S)  echo $'';;   # scroller
+  G)  echo $'';;   # grid
+  M)  echo $'';;   # monocle (abas)
+  K)  echo $'';;   # deck (empilhado)
+  CT|RT) echo $'';; # center/right tile
+  DW) echo $'';;   # dwindle
+  F|VF) echo $'';; # fair
+  V*) echo $'';;   # vertical_*
+  *)  echo $'';;
+esac; }
+name_of(){ case "$1" in T) echo tile;; S) echo scroller;; G) echo grid;; M) echo "monocle (abas)";; K) echo "deck (empilhado)";; CT) echo center_tile;; RT) echo right_tile;; VS) echo vertical_scroller;; VT) echo vertical_tile;; VG) echo vertical_grid;; VK) echo vertical_deck;; DW) echo dwindle;; F) echo fair;; VF) echo vertical_fair;; *) echo "$1";; esac; }
+while true; do
+  P=$(pgrep -x mango | head -1)
+  if [[ -n "$P" ]]; then
+    export MANGO_INSTANCE_SIGNATURE="$XDG_RUNTIME_DIR/mango-$P.sock"
+    out=$(mmsg get monitor "$(wlr-randr 2>/dev/null | awk '/^[^ ]/{print $1; exit}')" 2>/dev/null | jq -r '.name' 2>/dev/null)
+    [[ -n "$out" && "$out" != null ]] && mmsg watch monitor "$out" 2>/dev/null | while IFS= read -r l; do
+      s=$(printf '%s' "$l" | jq -r '.layout_symbol // empty' 2>/dev/null)
+      [[ -n "$s" ]] && printf '{"text":"%s %s","tooltip":"layout: %s","class":"layout-%s"}\n' "$(icon "$s")" "$s" "$(name_of "$s")" "$s"
+    done
+  fi
+  sleep 2
+done

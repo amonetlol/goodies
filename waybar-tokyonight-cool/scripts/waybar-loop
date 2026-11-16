@@ -1,0 +1,3 @@
+#!/bin/sh
+# sobe a waybar e a recoloca se cair (no login o portal D-Bus demora ~25 s e derruba a waybar)
+while true; do waybar; sleep 2; done
