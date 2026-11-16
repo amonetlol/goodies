@@ -39,4 +39,5 @@ Trocar de variante sem reiniciar: copie o `style.css` e o `colors.css` da outra 
 - Layout do mango: `S` scroller, `T` tile, `G` grid, `M` monocle (abas), `K` deck (empilhado) etc.; rolar o mouse sobre o indicador alterna, clicar abre o menu.
 - Se a waybar cair no login (portal D-Bus lento), use o `waybar-loop`.
 - `light` e `transparent` foram gerados a partir do `dark` (paleta e opacidade do fundo). Um fundo 100% transparente com brilho no texto deixava os icones embacados; por isso o `transparent` usa preto 0.45, legivel ate sobre wallpaper claro.
+- Relogio e calendario em pt-BR: o `config` usa `"locale": "pt_BR.UTF-8"` e o modificador `L` nos formatos (`{:L%A, %d de %B de %Y}`); sem o `L` a waybar ignora o locale e mostra em ingles. Precisa do locale `pt_BR.UTF-8` gerado no sistema. Para outro idioma, troque o `locale` e o texto dos formatos.
 - O tooltip do calendario mantem as cores do `config`.
