@@ -13,3 +13,5 @@
 - [archcraft-sway](archcraft-sway/): rofis do Archcraft (sway): launcher, runner, energia, captura, asroot, música, bluetooth, rede, confirmação e askpass. Previews: archcraft-sway/previews/.
 
 - [rofi-vicinae](rofi-vicinae/): menus de rofi no modelo StratOS Vicinae com a paleta Lumon (launcher, energia, layouts, atalhos, rede, resolução, wallpaper, configurações). Previews: rofi-vicinae/preview/.
+
+- [waybar-omunchy](waybar-omunchy/): waybar no estilo Omarchy (pílulas), versões v1 e v2, com data em pt-BR e clima (wttr.in). Previews: waybar-omunchy/v1 e v2/preview.png.

@@ -1,0 +1,164 @@
+/* Omunchy bar — Omarchy quattro look.
+ *
+ * Colours come from colors.css, rendered by noctalia from the wallpaper.
+ * Layout/spacing follow Omarchy's shell.toml tokens: fg-on-bg pills at
+ * 4-8% fill, 1px borders at 40%, fully opaque bar background.
+ */
+
+@import "colors.css";
+
+/* ---------- Base ---------- */
+* {
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+window#waybar {
+    background: alpha(@bg, 0.9);
+    color: @fg;
+}
+
+/* Flat, full-width bar: no group backgrounds, no rounded shapes, no bold */
+.modules-left,
+.modules-center,
+.modules-right {
+    padding: 0 6px;
+}
+
+/* ---------- Menu ---------- */
+#custom-menu {
+    color: @fg;
+    padding: 0 2px 0 7px;
+}
+
+#custom-menu:hover {
+    color: @accent;
+}
+
+/* ---------- Workspaces (dots) ---------- */
+#workspaces {
+    padding: 0 4px;
+}
+
+#workspaces button {
+    padding: 0 4px;
+    margin: 0;
+    font-size: 11px;
+    color: alpha(@fg, 0.35);
+    background: transparent;
+}
+
+#workspaces button.active {
+    color: @accent;
+}
+
+#workspaces button.urgent {
+    color: @red;
+}
+
+#workspaces button:hover:not(.active) {
+    color: @fg;
+}
+
+/* ---------- Weather / Date ---------- */
+#custom-weather,
+#custom-date {
+    color: @fg;
+    padding: 0 6px;
+}
+
+/* ---------- Clock ---------- */
+#clock {
+    color: @fg;
+    padding: 0 10px;
+}
+
+/* ---------- Updates (icon in the bar's green) ---------- */
+#custom-updates {
+    color: @accent;
+}
+
+#custom-updates.pending {
+    color: @accent;
+}
+
+/* ---------- Tray ---------- */
+#tray {
+    padding: 0 6px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+/* ---------- Right-side widgets ---------- */
+#memory,
+#cpu,
+#bluetooth,
+#network,
+#pulseaudio,
+#backlight,
+#battery,
+#power-profiles-daemon,
+#custom-power,
+#mpris {
+    color: @fg;
+    padding: 0 4px;
+}
+
+#network.disconnected {
+    color: @red;
+}
+
+#bluetooth.connected {
+    color: @accent;
+}
+
+#pulseaudio.muted {
+    color: @fg-dim;
+}
+
+#battery.warning {
+    color: @yellow;
+}
+
+#battery.critical {
+    color: @red;
+}
+
+#battery.charging {
+    color: @green;
+}
+
+/* ---------- Media (opt-in widget, Omarchy omarchy.media) ---------- */
+#mpris {
+    color: @fg;
+}
+
+#mpris.paused {
+    color: @fg-dim;
+}
+
+/* ---------- Tooltips (Omarchy: near-opaque bg, hairline border) ---------- */
+tooltip {
+    background: alpha(@bg, 0.9);
+    border: 1px solid alpha(@fg, 0.25);
+    padding: 6px 10px;
+}
+
+tooltip label {
+    color: @fg;
+    font-size: 12px;
+}
+
+#custom-power {
+    padding: 0 7px 0 4px;
+}

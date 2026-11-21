@@ -1,0 +1,219 @@
+{
+  // Omunchy default bar — Omarchy quattro (shell.json) parity, waybar edition.
+  // Layout: menu, workspaces | clock, updates | tray, bluetooth, network,
+  // audio, brightness, battery, power profile, media, power. Panels and
+  // notifications are noctalia's (DnD on Super+Shift+N).
+  //
+  // Colour: colors.css, rendered by noctalia from the wallpaper — no hex
+  // values in this file.
+  "layer": "top",
+  "position": "top",
+  "height": 24,
+  "spacing": 4,
+
+  "modules-left": [
+    "custom/menu",
+    "ext/workspaces"
+  ],
+  "modules-center": [
+    "custom/weather",
+    "custom/date",
+    "clock",
+    "custom/updates"
+  ],
+  "modules-right": [
+    "tray",
+    "memory",
+    "cpu",
+    "bluetooth",
+    "network",
+    "pulseaudio",
+    "backlight",
+    "battery",
+    "power-profiles-daemon",
+    "mpris",
+    "custom/power"
+  ],
+
+  // omarchy.menu — click: noctalia launcher, right-click: control center (Super+Space is rofi)
+  "custom/menu": {
+    "format": "⠀⠀",
+    "on-click": "noctalia msg panel-toggle launcher",
+    "on-click-right": "noctalia msg panel-toggle control-center",
+    "tooltip-format": "Left click: Launcher\nRight click: Control Center"
+  },
+
+  // omarchy.workspaces — one pill per tag (mango); click switches tag
+  "ext/workspaces": {
+    "format": "●",
+    "on-click": "activate",
+    "sort-by-id": true,
+    "all-outputs": true
+  },
+
+
+  // time; left-click opens the calendar
+  // weather — cidade via WAYBAR_WEATHER_CITY ou detectada pela rede (icon + temp)
+  "custom/weather": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/weather.sh",
+    "return-type": "json",
+    "interval": 1800,
+    "tooltip": true
+  },
+
+  // date — pt-BR e.g. Sáb 14 Nov
+  "custom/date": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/date-ptbr.sh",
+    "interval": 60,
+    "tooltip": false
+  },
+
+  "clock": {
+    "format": "{:%H:%M}",
+    "format-alt": "{:%a %d %b  %H:%M}",
+    "format-alt-click": "click-right",
+    "on-click": "noctalia msg panel-toggle control-center calendar",
+    "tooltip": false,
+    "interval": 60
+  },
+
+  // omarchy.system-update — badge only when updates are pending; 6 h poll
+  "custom/updates": {
+    "format": "{}",
+    "exec": "~/.local/share/omunchy/bin/omunchy-update-available",
+    "return-type": "json",
+    "interval": 21600,
+    "on-click": "foot -e ~/.local/share/omunchy/bin/omunchy-update-system",
+    "signal": 8
+  },
+
+  // omarchy.tray
+  "tray": {
+    "icon-size": 16,
+    "spacing": 6,
+    "show-passive-items": false
+  },
+
+  // memory — icon+% ; click toggles icon+used GB
+  "memory": {
+    "interval": 5,
+    "format": "󰍛 {percentage}%",
+    "format-alt": "󰍛 {used:0.1f}G",
+    "format-alt-click": "click-left",
+    "tooltip-format": "{used:0.1f}G / {total:0.1f}G ({percentage}%)"
+  },
+
+  // cpu — icon+%
+  "cpu": {
+    "interval": 3,
+    "format": "󰻠 {usage}%",
+    "tooltip": true
+  },
+
+  // omarchy.bluetooth — noctalia control-centre bluetooth tab
+  "bluetooth": {
+    "format": "{icon}",
+    "format-disabled": "",
+    "format-icons": {
+      "enabled": "󰂯",
+      "disabled": "󰂲",
+      "connected": "󰂱"
+    },
+    "on-click": "noctalia msg panel-toggle control-center bluetooth",
+    "tooltip-format": "Bluetooth: {status}"
+  },
+
+  // omarchy.network — noctalia control-centre network tab
+  "network": {
+    "format": "{icon}",
+    "format-icons": {
+      "wifi": "󰤨",
+      "ethernet": "󰈀",
+      "disconnected": "󰤭"
+    },
+    "tooltip-format": "{essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": "{ipaddr}",
+    "tooltip-format-disconnected": "Disconnected",
+    "on-click": "noctalia msg panel-toggle control-center network"
+  },
+
+  // omarchy.audio — click opens the noctalia audio tab; scroll via noctalia (OSD)
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-muted": "󰝟",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"]
+    },
+    "on-click": "noctalia msg panel-toggle control-center audio",
+    "on-scroll-up": "noctalia msg volume-up",
+    "on-scroll-down": "noctalia msg volume-down",
+    "tooltip-format": "{desc}"
+  },
+
+  // omarchy.monitor — brightness; icon only, scroll adjusts
+  "backlight": {
+    "format": "{icon}",
+    "tooltip-format": "Brightness: {percent}%",
+    "format-icons": ["󰃞", "󰃟", "󰃠"],
+    "on-scroll-up": "noctalia msg brightness-up",
+    "on-scroll-down": "noctalia msg brightness-down"
+  },
+
+  // omarchy.power — battery; icon only, details in tooltip
+  "battery": {
+    "format": "{icon}",
+    "format-charging": "󰂄",
+    "format-full": "󰁹",
+    "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰂂"],
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "interval": 60,
+    "on-click": "noctalia msg panel-toggle control-center power",
+    "tooltip-format": "{capacity}% · {time} remaining · {power}W"
+  },
+
+  // omarchy.power — power-profiles-daemon; click cycles profiles
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}",
+    "format-icons": {
+      "power-saver": "󰌪",
+      "balanced": "󰾅",
+      "performance": "󰓅"
+    }
+  },
+
+  // omarchy power panel-equivalent — noctalia session panel
+  "custom/power": {
+    "format": "󰐥",
+    "on-click": "noctalia msg panel-toggle session",
+    "tooltip": false
+  },
+
+  // omarchy.media (opt-in) — MPRIS now-playing; playerctl is a waybar dep
+  "mpris": {
+    "format": "{player_icon}",
+    "format-paused": "{status_icon}",
+    "tooltip-format": "{dynamic}",
+    "tooltip-format-paused": "Paused: {dynamic}",
+    "player-icons": {
+      "default": "󰏥",
+      "firefox": "󰈹",
+      "mpv": "󰦖",
+      "spotify": "󰓇"
+    },
+    "status-icons": {
+      "paused": "󰐊"
+    },
+    "dynamic-order": ["title", "artist"],
+    "on-click": "noctalia msg panel-toggle control-center media",
+    "on-scroll-up": "noctalia msg media next",
+    "on-scroll-down": "noctalia msg media previous",
+    "interval": 5,
+    "tooltip": true
+  }
+}
