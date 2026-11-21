@@ -1,0 +1,64 @@
+/* rofi-top-01 — OutTheme (OuterFrog/outtheme-rofi-theme) com as cores do Traffic (Gogh), Maple Mono NF e ícones Gruvbox-Plus-Dark */
+configuration {
+    run,drun { fallback-icon: "application-x-addon"; }
+    show-icons: true;
+    icon-theme: "Gruvbox-Plus-Dark";
+    drun-display-format: "{name}";
+}
+* {
+    darkbg:  #282C30ed;
+    lightbg: #434A50ed;
+    accent:  #C1A088;
+    tcolor:  #CBBAAA;
+    font: "Maple Mono NF 13";
+}
+window {
+    width: 30%;
+    location: center;
+    anchor: center;
+    border-radius: 10px;
+    background-color: @darkbg;
+    text-color: @tcolor;
+    transparency: "screenshot";
+    border: 1px;
+    border-color: @lightbg;
+}
+mainbox { background-color: transparent; children: [ inputbar, message, listview ]; }
+inputbar { background-color: transparent; children: [ entry, case-indicator, icon-search ]; }
+entry {
+    placeholder: "";
+    background-color: transparent;
+    text-color: @tcolor;
+    font: "Maple Mono NF Bold 18";
+    blink: true;
+    padding: 12px 15px;
+}
+case-indicator { background-color: transparent; text-color: @tcolor; }
+textbox-prompt-colon { enabled: false; }
+prompt { enabled: false; }
+message { border: 0px; background-color: transparent; padding: 0px 15px 8px 15px; }
+textbox { background-color: transparent; text-color: @accent; font: "Maple Mono NF 11"; }
+listview {
+    spacing: 5px;
+    lines: 8;
+    fixed-height: false;
+    border: 0px;
+    background-color: transparent;
+    dynamic: true;
+    require-input: false;   /* lista os apps ao abrir (true = estilo Spotlight, só ao digitar) */
+    scrollbar: false;
+}
+element { border-radius: 5px; background-color: transparent; text-color: @tcolor; children: [ element-icon, element-text ]; }
+element normal.normal, element alternate.normal, element normal.active, element alternate.active,
+element normal.urgent, element alternate.urgent { background-color: transparent; text-color: @tcolor; }
+element selected.normal, element selected.active, element selected.urgent { background-color: @lightbg; text-color: @accent; }
+element-text { background-color: transparent; text-color: inherit; highlight: bold #C1A088; vertical-align: 0.5; }
+element-icon { background-color: transparent; enabled: true; size: 40px; padding: 10px 15px; }
+icon-search {
+    expand: false;
+    background-color: transparent;
+    filename: "~/.config/rofi/rofi-top-01/searchicon.svg";
+    size: 30px;
+    padding: 12.5px 17.5px;
+    vertical-align: 0.5;
+}

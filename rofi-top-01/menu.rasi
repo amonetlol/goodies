@@ -1,0 +1,6 @@
+/* OutTheme para menus (energia, layouts, atalhos, rede/janelas): sem ícones e lista visível sem digitar */
+@import "~/.config/rofi/rofi-top-01/outtheme.rasi"
+configuration { show-icons: false; }
+listview { require-input: false; lines: 6; }
+element-icon { enabled: false; }
+element { padding: 9px 15px; }

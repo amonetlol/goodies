@@ -7,3 +7,5 @@
 - [waybar-tokyonight-cool](waybar-tokyonight-cool/): waybar em pilhas (azul Tokyo Night/Frappe, variantes dark, light e transparent) para MangoWM: layout do mango, drawers expandidos e botao de energia. Preview: waybar-tokyonight-cool/dark, light e transparent/preview/bar.png.
 
 - [rofi-spotlight](rofi-spotlight/): launcher estilo Spotlight (OutTheme/OuterFrog) com cores Traffic, Maple Mono NF e ícones Gruvbox-Plus-Dark; a lista aparece ao digitar. Preview: rofi-spotlight/preview.png.
+
+- [rofi-top-01](rofi-top-01/): rofis do rice do dwm (launcher, energia, layouts, atalhos, wallpaper) no estilo OutTheme com cores Traffic, Maple Mono NF e ícones Gruvbox-Plus-Dark. Previews: rofi-top-01/previews/.

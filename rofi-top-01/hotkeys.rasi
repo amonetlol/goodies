@@ -1,0 +1,6 @@
+@import "~/.config/rofi/rofi-top-01/menu.rasi"
+window { width: 46%; }
+listview { lines: 14; scrollbar: true; }
+scrollbar { handle-color: #C1A088; handle-width: 4px; background-color: transparent; }
+element { padding: 6px 15px; }
+element-text { font: "Maple Mono NF 11"; }
