@@ -1,0 +1,23 @@
+/* Lumon (theme-global/lumon/palette.json) no modelo rofi StratOS/Vicinae */
+* {
+    foreground:           #cce3e8;
+    selected-foreground:  #0f181c;
+
+    background:           #0f181cf2;
+    background-solid:     #0f181c;
+    background-alt:       #222a2e;
+    unselected-background:#222a2e;
+
+    border-color:         #4ec9b0;
+    selected-background:  #4ec9b0;
+    selected-background-alt: #3fa490;
+    selected-background-gradient: linear-gradient(#4ec9b0, #3fa490);
+
+    accent:               #4ec9b0;
+    cyan:                 #4ec9b0;
+    magenta:              #3fa490;
+    green:                #4ec9b0;
+    orange:               #dbc074;
+    red:                  #e05561;
+    comment:              #6f939e;
+}

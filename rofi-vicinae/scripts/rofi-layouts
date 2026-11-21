@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Super+; : menu de layouts do kwm (o kwm nao tem IPC: aplica enviando o atalho Super+<tecla> com wtype)
+dir="$HOME/.config/rofi/lumon"
+opts=$'  tile (mestre + pilha)|t\n  grid|g\n  monocle (uma janela por vez)|m\n  deck|y\n  scroller|s\n  mestre centralizado|u\n  flutuante|f'
+sel=$(printf '%s\n' "$opts" | cut -d'|' -f1 | rofi -dmenu -i -p " layout" -no-custom -theme "$dir/vicinae-launcher.rasi" -theme-str "window {width: 520px; height: 480px;}") || exit 0
+k=$(printf '%s\n' "$opts" | awk -F'|' -v s="$sel" '$1==s {print $2; exit}')
+[ -n "$k" ] || exit 0
+sleep 0.25
+layout-set "$k"

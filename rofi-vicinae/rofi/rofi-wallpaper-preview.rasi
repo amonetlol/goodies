@@ -1,0 +1,116 @@
+/* StratOS tokyo-night · wallpaper picker (grid + preview de imagem)
+ * Exibe thumbnails como icones (icon size grande).
+ * Uso tipico com script que gera icones/symlink:
+ *   rofi -show filebrowser -filebrowser-directory ~/Pictures/Wallpapers \
+ *        -theme rofi-wallpaper-preview.rasi
+ * ou dmenu alimentado com nomes + -show-icons e icon theme local.
+ */
+configuration {
+    icon-theme:                 "McMuse-circle";
+    modi:                       "filebrowser";
+    show-icons:                 true;
+    font:                       "Maple Mono NF CN 13";
+    disable-history:            true;
+    hide-scrollbar:             true;
+    filebrowser-directories-first: false;
+}
+
+@import "colors.rasi"
+
+window {
+    width:              860px;
+    height:             560px;
+    border:             3px;
+    border-color:       @border-color;
+    border-radius:      10px;
+    background-color:   @background;
+    padding:            14px;
+}
+
+mainbox {
+    spacing:            12px;
+    background-color:   transparent;
+    children:           [ inputbar, listview, message ];
+}
+
+inputbar {
+    spacing:            10px;
+    padding:            12px 14px;
+    border-radius:      8px;
+    background-color:   @background-alt;
+    text-color:         @foreground;
+    children:           [ prompt, entry ];
+}
+
+prompt {
+    background-color:   transparent;
+    text-color:         @cyan;
+    padding:            0px 10px 0px 0px;
+}
+
+entry {
+    placeholder:        "Search wallpapers…";
+    placeholder-color:  @comment;
+    text-color:         @foreground;
+    background-color:   transparent;
+}
+
+listview {
+    columns:            3;
+    lines:              3;
+    spacing:            12px;
+    cycle:              true;
+    dynamic:            true;
+    scrollbar:          false;
+    layout:             vertical;
+    background-color:   transparent;
+    flow:               horizontal;
+}
+
+element {
+    padding:            12px;
+    spacing:            8px;
+    border-radius:      10px;
+    background-color:   @background-alt;
+    text-color:         @foreground;
+    orientation:        vertical;
+    children:           [ element-icon, element-text ];
+}
+
+element-icon {
+    size:               140px;
+    background-color:   transparent;
+    border-radius:      8px;
+    horizontal-align:   0.5;
+}
+
+element-text {
+    background-color:   transparent;
+    text-color:         inherit;
+    horizontal-align:   0.5;
+    vertical-align:     0.5;
+}
+
+element normal.normal,
+element alternate.normal {
+    background-color:   @background-alt;
+    text-color:         @foreground;
+}
+
+element selected.normal {
+    background-color:   @selected-background;
+    text-color:         @selected-foreground;
+    border:             2px;
+    border-color:       @cyan;
+}
+
+message {
+    padding:            8px 4px 0px 4px;
+    background-color:   transparent;
+}
+
+textbox {
+    background-color:   transparent;
+    text-color:         @comment;
+    horizontal-align:   0.5;
+}

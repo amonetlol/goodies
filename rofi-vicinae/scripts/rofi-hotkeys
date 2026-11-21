@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+# Super+F1 / Super+Shift+F1: lista COMPLETA de atalhos do kwm (rofi, modelo StratOS/Vicinae, cores Lumon). Super = tecla Windows.
+cat <<'LIST' | rofi -dmenu -i -p "atalhos" -no-custom -theme "$HOME/.config/rofi/lumon/vicinae-launcher.rasi" -theme-str 'configuration {show-icons: false;} window {width: 980px; height: 900px;} listview {lines: 18;}' >/dev/null
+── PROGRAMAS (Alt faz o mesmo que Super) ──────────────────────────────────
+Super|Alt + Return        │ kitty (terminal)
+Super + Shift + Return    │ foot (terminal alternativo)
+Super|Alt + D  /  Super+P │ launcher (rofi)
+Super + Shift + D         │ executar comando
+Super|Alt + W             │ firefox
+Super|Alt + E             │ nautilus
+Super|Alt + N             │ menu de rede (rofi)
+Super|Alt + H             │ configurações (kwm, barra, kitty, rofi, starship)
+Super|Alt + X             │ menu de energia
+Super + Alt + M  /  T     │ btop
+Super + Shift + S / Print │ captura de tela
+Teclas de volume          │ volume (pamixer)
+Super + F1 / Shift + F1   │ esta lista
+── TELA E WALLPAPER ───────────────────────────────────────────────────────
+Super|Alt + M             │ alterna resolução (1920x1080 ↔ 1600x900)
+Super + Shift + M         │ resolução padrão (rofi)
+Super|Alt + F10           │ escolher wallpaper (rofi)
+Super + B                 │ esconder / mostrar a barra
+── JANELAS ────────────────────────────────────────────────────────────────
+Super + Q  /  Shift + C   │ fechar a janela
+Super + Tab / Shift + Tab │ foco: próxima / anterior janela
+Super + setas             │ foco: Right/Down próxima, Left/Up anterior
+Super + J / K             │ foco próxima / anterior (alternativo)
+Super + Shift + setas     │ mover a janela na ordem
+Super + Shift + J / K     │ mover a janela na ordem (alternativo)
+Super + Z                 │ trazer a janela para a área mestre (zoom)
+Super + Ctrl + H / L      │ voltar o foco para a janela mestre
+Super + T                 │ janela flutuante (liga/desliga)
+Super + F                 │ maximizar (mantém a barra no topo)
+Super + Shift + F         │ tela cheia (esconde a barra)
+Super + Ctrl + Shift + F  │ tela cheia só dentro da janela
+Super + Ctrl + S          │ janela fixa em todas as tags (sticky)
+Super + A  /  Shift + A   │ swallow da janela / swallow automático
+── LAYOUTS ────────────────────────────────────────────────────────────────
+Super + Space             │ próximo layout (tile, grid, monocle, deck, scroller, central, flutuante)
+Super + Shift + Space     │ layout anterior
+Super + Ctrl + Space      │ voltar ao layout usado antes
+Super + ;                 │ menu de layouts (rofi)
+Super + G / Y / S / U     │ grid / deck / scroller / mestre central
+Super + Alt + F           │ layout flutuante
+Super + Shift + H / L     │ largura da área mestre (menor / maior)
+Super + = / -             │ nº de janelas na área mestre (+ / −)
+Super + Alt + = / -       │ espaçamento entre janelas (+ / −)
+Super + Alt + H J K L     │ posição da área mestre (esq./baixo/cima/dir.)
+Super + Shift + G / U     │ direção do grid / do mestre central
+── TAGS (workspaces) ──────────────────────────────────────────────────────
+Super + 1..9              │ ir para a tag
+Super + 0                 │ ver todas as tags
+Super + Shift + 1..9      │ mover a janela para a tag
+Super + Ctrl + 1..9       │ mostrar / esconder a tag junto com a atual
+Super + Ctrl + Shift+1..9 │ janela também nessa tag
+Super + Ctrl + Tab        │ tag anterior
+── MONITORES ──────────────────────────────────────────────────────────────
+Super + , / .             │ foco no monitor anterior / próximo
+Super + Shift + , / .     │ enviar a janela ao monitor anterior / próximo
+── SESSÃO ─────────────────────────────────────────────────────────────────
+Super + Shift + R         │ recarregar a configuração do kwm
+Super + Shift + Esc       │ modo passthrough (repassa as teclas ao app; mesmo atalho sai)
+Super + Shift + Q         │ sair do kwm
+LIST

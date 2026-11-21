@@ -1,0 +1,109 @@
+/* StratOS tokyo-night · powermenu
+ * Compacto horizontal: Lock / Logout / Suspend / Reboot / Shutdown
+ *
+ * Exemplo:
+ *   echo -e "Lock\nLogout\nSuspend\nReboot\nShutdown" | \
+ *     rofi -dmenu -i -p "Power" -theme rofi-powermenu.rasi
+ */
+configuration {
+    icon-theme:                 "McMuse-circle";
+    modi:                       "dmenu";
+    show-icons:                 true;
+    font:                       "Maple Mono NF CN 14";
+    disable-history:            true;
+    hide-scrollbar:             true;
+}
+
+@import "colors.rasi"
+
+window {
+    width:              560px;
+    height:             200px;
+    border:             3px;
+    border-color:       @border-color;
+    border-radius:      10px;
+    background-color:   @background;
+    padding:            14px;
+    location:           center;
+}
+
+mainbox {
+    spacing:            12px;
+    background-color:   transparent;
+    children:           [ inputbar, listview ];
+}
+
+inputbar {
+    spacing:            8px;
+    padding:            8px 12px;
+    border-radius:      8px;
+    background-color:   @background-alt;
+    text-color:         @foreground;
+    children:           [ prompt, entry ];
+}
+
+prompt {
+    background-color:   transparent;
+    text-color:         @red;
+    padding:            0px 8px 0px 0px;
+}
+
+entry {
+    placeholder:        "";
+    placeholder-color:  @comment;
+    text-color:         @foreground;
+    background-color:   transparent;
+    cursor:             text;
+}
+
+listview {
+    columns:            5;
+    lines:              1;
+    spacing:            10px;
+    cycle:              true;
+    dynamic:            true;
+    scrollbar:          false;
+    layout:             vertical;
+    flow:               horizontal;
+    background-color:   transparent;
+}
+
+element {
+    padding:            14px 8px;
+    spacing:            8px;
+    border-radius:      10px;
+    background-color:   @background-alt;
+    text-color:         @foreground;
+    orientation:        vertical;
+    children:           [ element-icon, element-text ];
+}
+
+element-icon {
+    size:               32px;
+    background-color:   transparent;
+    horizontal-align:   0.5;
+}
+
+element-text {
+    background-color:   transparent;
+    text-color:         inherit;
+    horizontal-align:   0.5;
+    vertical-align:     0.5;
+}
+
+element normal.normal,
+element alternate.normal {
+    background-color:   @background-alt;
+    text-color:         @foreground;
+}
+
+element selected.normal {
+    background-color:   @selected-background;
+    text-color:         @selected-foreground;
+    border:             2px;
+    border-color:       @red;
+}
+
+element-text selected {
+    text-color:         @selected-foreground;
+}

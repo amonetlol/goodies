@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Super+N: menu de rede (rofi + nmcli, modelo StratOS/Vicinae, cores Lumon): conexoes salvas, redes Wi-Fi e editor (nmtui)
+export LC_ALL=pt_BR.UTF-8
+T="$HOME/.config/rofi/lumon/vicinae-launcher.rasi"
+menu(){ rofi -dmenu -i -p "$1" -theme "$T" -no-custom -theme-str 'configuration {show-icons: false;} window {width: 640px; height: 460px;}'; }
+conns=$(nmcli -t -f NAME,TYPE,DEVICE connection show | awk -F: '$2!="loopback"{ s=($3!="")?"●":"○"; printf "%s %s (%s)\n", s, $1, $2 }')
+wifi=""
+if nmcli -t -f TYPE device | grep -qx wifi; then
+  wifi=$(nmcli -t -f SSID,SIGNAL,SECURITY device wifi list 2>/dev/null | awk -F: '$1!=""&&!s[$1]++{ printf "󰖩 %s (%s%% %s)\n", $1, $2, ($3==""?"aberta":$3) }')
+fi
+sel=$( { [ -n "$conns" ] && echo "$conns"; [ -n "$wifi" ] && echo "$wifi"; echo "⚙ Editor de rede (nmtui)"; } | menu "rede") || exit 0
+case "$sel" in
+  "⚙"*) kitty -e nmtui ;;
+  "󰖩"*) ssid=$(echo "$sel" | sed -E 's/^󰖩 //; s/ \([^)]*\)$//')
+        if nmcli -t -f NAME connection show | grep -qx "$ssid"; then nmcli connection up "$ssid"
+        else pw=$(rofi -dmenu -password -p "senha" -theme "$T" -theme-str 'configuration {show-icons: false;} window {width: 480px; height: 130px;} listview {enabled: false;}' </dev/null) && nmcli device wifi connect "$ssid" password "$pw"; fi
+        notify-send "rede" "$ssid" 2>/dev/null ;;
+  *) name=$(echo "$sel" | sed -E 's/^[●○] //; s/ \([^)]*\)$//')
+     if nmcli -t -f NAME,DEVICE connection show --active | grep -q "^$name:"; then nmcli connection down "$name"; else nmcli connection up "$name"; fi
+     notify-send "rede" "$name" 2>/dev/null ;;
+esac

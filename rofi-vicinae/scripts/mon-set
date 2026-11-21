@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Super+Shift+M: escolhe a resolucao (rofi), aplica agora e grava como padrao (sessao kwm: ~/.config/mon-default; SDDM: /etc/sddm-resolution)
+out=$(wlr-randr | awk '/^[^ ]/{print $1; exit}')
+cur=$(wlr-randr | awk '/current/{print $1; exit}'); cur=${cur%%@*}
+def=$(cat "$HOME/.config/mon-default" 2>/dev/null)
+list=$(wlr-randr | awk '/^ +[0-9]+x[0-9]+/{split($1,a,"@"); print a[1]}' | awk '!s[$0]++' | grep -x -E '1920x1080|1600x900')
+sel=$(printf '%s\n' "$list" | awk -v c="$cur" -v d="$def" '{t=$1; if($1==c)t=t"   (atual)"; if($1==d)t=t"   (padrao)"; print t}' \
+  | rofi -dmenu -i -p "󰍹 resolucao padrao" -no-custom -theme "$HOME/.config/rofi/lumon/vicinae-launcher.rasi" -theme-str "window {width: 480px; height: 230px;}") || exit 0
+r=${sel%% *}; [ -n "$r" ] || exit 0
+wlr-randr --output "$out" --mode "$r" || { notify-send "resolucao" "falhou: $r"; exit 1; }
+mkdir -p "$HOME/.config"; echo "$r" > "$HOME/.config/mon-default"
+echo "$r" | sudo -n tee /etc/sddm-resolution >/dev/null 2>&1
+notify-send "resolucao padrao" "$r (sessao e SDDM)"

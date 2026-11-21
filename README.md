@@ -9,3 +9,7 @@
 - [rofi-spotlight](rofi-spotlight/): launcher estilo Spotlight (OutTheme/OuterFrog) com cores Traffic, Maple Mono NF e ícones Gruvbox-Plus-Dark; a lista aparece ao digitar. Preview: rofi-spotlight/preview.png.
 
 - [rofi-top-01](rofi-top-01/): rofis do rice do dwm (launcher, energia, layouts, atalhos, wallpaper) no estilo OutTheme com cores Traffic, Maple Mono NF e ícones Gruvbox-Plus-Dark. Previews: rofi-top-01/previews/.
+
+- [archcraft-sway](archcraft-sway/): rofis do Archcraft (sway): launcher, runner, energia, captura, asroot, música, bluetooth, rede, confirmação e askpass. Previews: archcraft-sway/previews/.
+
+- [rofi-vicinae](rofi-vicinae/): menus de rofi no modelo StratOS Vicinae com a paleta Lumon (launcher, energia, layouts, atalhos, rede, resolução, wallpaper, configurações). Previews: rofi-vicinae/preview/.

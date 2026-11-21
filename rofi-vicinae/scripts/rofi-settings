@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Super+H: configuracoes (base: one-arch-clean rofi-settings / kokopi-dev settings-manager), no tema rofi-vicinae (Lumon).
+# Escolhe a area (DE, barra, kitty, rofi, starship), depois o arquivo; abre no editor (nvim) dentro do kitty.
+export LC_ALL=pt_BR.UTF-8
+T="$HOME/.config/rofi/lumon/rofi-settings.rasi"
+BACK="󰁍   Voltar"
+menu(){ rofi -dmenu -i -no-custom -p "Config" -mesg "$1" -theme "$T"; }
+edit(){ kitty -e bash -c 'nvim "$0" 2>/dev/null || micro "$0" 2>/dev/null || nano "$0"' "$1" & disown; }
+declare -A FILES=(
+  [kwm]="$HOME/.config/kwm/config.zon
+$HOME/.config/river/init"
+  [barra]="$HOME/.local/bin/kwm-status
+$HOME/.config/kwm/config.zon"
+  [kitty]="$HOME/.config/kitty/kitty.conf
+$HOME/.config/kitty/lumon.conf"
+  [rofi]="$HOME/.config/rofi/lumon/colors.rasi
+$HOME/.config/rofi/lumon/vicinae-launcher.rasi
+$HOME/.config/rofi/lumon/rofi-powermenu.rasi
+$HOME/.config/rofi/lumon/rofi-wallpaper-preview.rasi"
+  [starship]="$HOME/.config/starship-lumon.toml"
+)
+declare -A TITLE=([kwm]="󰒓 kwm + river (Super+Shift+R recarrega)" [barra]="󰍹 Barra" [kitty]="󰆍 Kitty" [rofi]="󰀻 Rofi (vicinae)" [starship]="󰞷 Starship")
+choose_file(){ # area
+  local f; f=$( { printf '%s\n' "${FILES[$1]}" | sed "s#^$HOME#~#"; echo "$BACK"; } | menu "${TITLE[$1]}") || exit 0
+  [[ -z $f || $f == "$BACK" ]] && main
+  edit "${f/#\~/$HOME}"
+}
+main(){
+  local sel; sel=$(printf '%s\n' "󰒓   kwm / river" "󰍹   Barra" "󰆍   Kitty" "󰀻   Rofi (vicinae)" "󰞷   Starship" | menu "󰒓 Configuracoes") || exit 0
+  case "$sel" in
+    *kwm*)     choose_file kwm;;
+    *Barra*)   choose_file barra;;
+    *Kitty*)   choose_file kitty;;
+    *Rofi*)    choose_file rofi;;
+    *Starship*) choose_file starship;;
+  esac
+}
+main

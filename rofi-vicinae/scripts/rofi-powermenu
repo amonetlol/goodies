@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Super+X: menu de energia so com icones Nerd Font brancos (modelo rofi StratOS/Vicinae, cores Lumon)
+export LC_ALL=pt_BR.UTF-8   # os glifos Nerd Font exigem UTF-8 (a sessao pode vir com locale C)
+t="$HOME/.config/rofi/lumon/rofi-powermenu.rasi"
+sus=$''; out=$'\U000f0343'; reb=$'\U000f0709'; off=$'\U000f0425'      # lua, sair, reiniciar, desligar
+sel=$(printf '%s\n%s\n%s\n%s\n' "$sus" "$out" "$reb" "$off" \
+  | rofi -dmenu -i -p "" -theme "$t" -no-custom -format s -theme-str '
+    configuration {show-icons: false;}
+    window {height: 150px; width: 420px;}
+    mainbox {children: [listview];}
+    listview {columns: 4;}
+    element {padding: 14px 8px;}
+    element-text {font: "Maple Mono NF CN 22"; text-color: #ffffff; horizontal-align: 0.5; vertical-align: 0.5;}
+    element selected.normal {text-color: #ffffff;}
+    element-text selected {text-color: #ffffff;}') || exit 0
+case "$sel" in
+  "$off") systemctl poweroff ;;
+  "$reb") systemctl reboot ;;
+  "$sus") systemctl suspend ;;
+  "$out") pkill -x kwm; pkill -x river ;;
+esac

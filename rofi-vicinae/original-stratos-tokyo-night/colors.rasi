@@ -1,0 +1,26 @@
+/* StratOS Vicinae → rofi
+ * Theme: tokyo-night (dark)
+ * Source: StratOS-Linux/StratOS-vicinae-config .config/vicinae/settings.json
+ */
+* {
+    foreground:           #c0caf5;
+    selected-foreground:  #1a1b26;
+
+    background:           #1a1b26f2;
+    background-solid:     #1a1b26;
+    background-alt:       #16161e;
+    unselected-background:#16161e;
+
+    border-color:         #7aa2f7;
+    selected-background:  #7aa2f7;
+    selected-background-alt: #89b4fa;
+    selected-background-gradient: linear-gradient(#7aa2f7, #2ac3de);
+
+    accent:               #7aa2f7;
+    cyan:                 #7dcfff;
+    magenta:              #bb9af7;
+    green:                #9ece6a;
+    orange:               #ff9e64;
+    red:                  #f7768e;
+    comment:              #565f89;
+}

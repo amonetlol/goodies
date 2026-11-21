@@ -1,0 +1,6 @@
+/* Menus de configuracao (Super+H) e rede (Super+N) — mesmo estilo do launcher vicinae, janela menor, sem icones de app */
+@import "vicinae-launcher.rasi"
+configuration { show-icons: false; }
+window { width: 560px; height: 410px; }
+listview { lines: 5; }
+element-icon { size: 0px; }

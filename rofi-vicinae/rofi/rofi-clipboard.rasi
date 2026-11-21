@@ -1,0 +1,105 @@
+/* StratOS tokyo-night · clipboard history (estilo Vicinae clipboard:history)
+ * Uso tipico com cliphist / greenclip / copyq:
+ *   cliphist list | rofi -dmenu -i -p "Clipboard" -theme rofi-clipboard.rasi | cliphist decode | wl-copy
+ */
+configuration {
+    icon-theme:                 "McMuse-circle";
+    modi:                       "dmenu";
+    show-icons:                 true;
+    font:                       "Maple Mono NF CN 14";
+    disable-history:            true;
+    hide-scrollbar:             true;
+}
+
+@import "colors.rasi"
+
+window {
+    width:              700px;
+    height:             460px;
+    border:             3px;
+    border-color:       @border-color;
+    border-radius:      10px;
+    background-color:   @background;
+    padding:            12px;
+}
+
+mainbox {
+    spacing:            10px;
+    background-color:   transparent;
+    children:           [ inputbar, listview ];
+}
+
+inputbar {
+    spacing:            10px;
+    padding:            12px 14px;
+    border-radius:      8px;
+    background-color:   @background-alt;
+    text-color:         @foreground;
+    children:           [ prompt, entry, case-indicator ];
+}
+
+prompt {
+    background-color:   transparent;
+    text-color:         @green;
+    padding:            0px 10px 0px 0px;
+}
+
+entry {
+    placeholder:        "Search clipboard…";
+    placeholder-color:  @comment;
+    text-color:         @foreground;
+    background-color:   transparent;
+    cursor:             text;
+}
+
+case-indicator {
+    text-color:         @comment;
+    background-color:   transparent;
+}
+
+listview {
+    columns:            1;
+    lines:              10;
+    spacing:            3px;
+    cycle:              true;
+    dynamic:            true;
+    scrollbar:          false;
+    layout:             vertical;
+    background-color:   transparent;
+}
+
+element {
+    padding:            10px 12px;
+    spacing:            12px;
+    border-radius:      8px;
+    background-color:   transparent;
+    text-color:         @foreground;
+    orientation:        horizontal;
+    children:           [ element-icon, element-text ];
+}
+
+element-icon {
+    size:               22px;
+    background-color:   transparent;
+}
+
+element-text {
+    background-color:   transparent;
+    text-color:         inherit;
+    vertical-align:     0.5;
+}
+
+element normal.normal,
+element alternate.normal {
+    background-color:   transparent;
+    text-color:         @foreground;
+}
+
+element selected.normal {
+    background-color:   @selected-background;
+    text-color:         @selected-foreground;
+}
+
+element-text selected {
+    text-color:         @selected-foreground;
+}

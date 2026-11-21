@@ -1,0 +1,26 @@
+/* StratOS Vicinae → rofi
+ * Theme: catppuccin-latte (light)
+ * Source: StratOS-Linux/StratOS-vicinae-config .config/vicinae/settings.json
+ */
+* {
+    foreground:           #4c4f69;
+    selected-foreground:  #eff1f5;
+
+    background:           #eff1f5f2;
+    background-solid:     #eff1f5;
+    background-alt:       #e6e9ef;
+    unselected-background:#e6e9ef;
+
+    border-color:         #1e66f5;
+    selected-background:  #1e66f5;
+    selected-background-alt: #7287fd;
+    selected-background-gradient: linear-gradient(#1e66f5, #04a5e5);
+
+    accent:               #1e66f5;
+    cyan:                 #04a5e5;
+    magenta:              #8839ef;
+    green:                #40a02b;
+    orange:               #fe640b;
+    red:                  #d20f39;
+    comment:              #9ca0b0;
+}
