@@ -1,0 +1,57 @@
+// waybar MIN (base Oak-conf/swaywm-rice) — tema Base2Tone Space (Gogh); cores em colors.css
+{
+  "layer": "top",
+  "position": "top",
+  "spacing": 0,
+  "height": 26,
+  "margin-left": 700,
+  "margin-right": 700,
+  "margin-top": 0,
+  "modules-left": ["custom/menu", "niri/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": ["network", "custom/power", "wireplumber"],
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "focused": "󱓻", "active": "󱓻",
+      "1": "1", "2": "2", "3": "3", "4": "4", "5": "5", "6": "6", "7": "7", "8": "8", "9": "9", "10": "0",
+      "default": ""
+    }
+  },
+  "custom/menu": {
+    "format": "󰍜",
+    "tooltip": false,
+    "on-click": "rofi -show drun"
+  },
+  "clock": {
+    "format": "{:L%a %d %b %H:%M}",
+    "locale": "pt_BR.UTF-8",
+    "tooltip": false
+  },
+  "network": {
+    "format": "{icon}",
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰀂",
+    "format-disconnected": "󰤮",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "{ipaddr}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-disconnected": "Desconectado",
+    "interval": 3,
+    "on-click": "nm-connection-editor"
+  },
+  "custom/power": {
+    "format": "\u23fb",
+    "tooltip": false,
+    "on-click": "wlogout"
+  },
+  "wireplumber": {
+    "format": "{icon}",
+    "format-muted": "",
+    "format-icons": ["", "", ""],
+    "tooltip-format": "{node_name}: {volume}%",
+    "scroll-step": 5,
+    "on-click": "pwvucontrol",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+  }
+}

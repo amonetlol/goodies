@@ -1,0 +1,24 @@
+/* waybar MIN (Oak-conf/swaywm-rice) — tema Base2Tone Space (Gogh); cores em colors.css */
+@import "colors.css";
+* {
+  background-color: @bg;
+  color: @fg;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: "Maple Mono NF";
+  font-size: 12px;
+}
+.modules-left { margin-left: 8px; }
+.modules-right { margin-right: 8px; }
+#workspaces button { all: initial; padding: 0 6px; margin: 0 1.5px; min-width: 9px; color: @fg; }
+#workspaces button.focused, #workspaces button.active { color: @accent; }
+#workspaces button.urgent { color: @urgent; }
+#workspaces button.empty { opacity: 0.5; }
+#network { margin-right: 13px; }
+#wireplumber { min-width: 12px; margin: 0 7.5px; }
+#wireplumber.muted { color: @comment; }
+#clock { margin-left: 8.75px; }
+tooltip { padding: 2px; }
+#custom-power { margin: 0 7.5px; min-width: 12px; color: @urgent; }
+#custom-menu { padding: 0 6px; margin: 0 1.5px; min-width: 12px; font-size: 16px; color: @accent; }

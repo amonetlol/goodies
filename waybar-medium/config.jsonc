@@ -1,0 +1,44 @@
+// waybar MEDIUM (base diinki/diinki-retrofuture) — tema Base2Tone Space (Gogh); cores em colors.css
+{
+  "layer": "top",
+  "spacing": 0,
+  "height": 0,
+  "margin-bottom": 0,
+  "margin-top": 15,
+  "position": "top",
+  "margin-right": 500,
+  "margin-left": 500,
+  "modules-left": ["custom/applauncher", "niri/workspaces"],
+  "modules-center": [],
+  "modules-right": ["network", "wireplumber", "tray", "clock"],
+  "niri/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": false,
+    "format": "{index}",
+    "tooltip": false
+  },
+  "custom/applauncher": {
+    "format": "󰍜",
+    "on-click": "pkill -x rofi || rofi -show drun",
+    "tooltip": false
+  },
+  "tray": { "spacing": 10, "tooltip": false },
+  "clock": { "format": "󰅐 {:%H:%M}", "tooltip": false },
+  "network": {
+    "format-wifi": " {bandwidthDownBits}",
+    "format-ethernet": " {bandwidthDownBits}",
+    "format-disconnected": "󰤮 Sem rede",
+    "interval": 5,
+    "tooltip": false,
+    "on-click": "nm-connection-editor"
+  },
+  "wireplumber": {
+    "scroll-step": 5,
+    "max-volume": 150,
+    "format": "{icon} {volume}%",
+    "format-icons": ["", "", " "],
+    "format-muted": " ",
+    "on-click": "pwvucontrol",
+    "tooltip": false
+  }
+}

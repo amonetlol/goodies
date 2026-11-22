@@ -1,0 +1,105 @@
+/* waybar FULL (shadowofdominance/swaydots) — tema Base2Tone Space (Gogh); cores em colors.css */
+@import "colors.css";
+
+* {
+  font-family: "Maple Mono NF";
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+}
+
+/* ── The floating capsule ───────────────────────────────── */
+window#waybar {
+  background: alpha(@bg, 0.75);
+  color: @fg;
+  border: 1px solid alpha(@accent, 0.30);
+  border-radius: 21px;
+}
+
+window#waybar > box {
+  padding: 3px 6px;
+}
+
+tooltip {
+  background: @bg;
+  color: @fg;
+  border: 1px solid @accent;
+  border-radius: 12px;
+}
+tooltip label { color: @fg; padding: 2px; }
+
+/* ── Shared pill look ───────────────────────────────────── */
+#wireplumber, #cpu, #memory, #network, #tray, #custom-relogio,
+#workspaces, #window, #custom-power {
+  background: alpha(@bg2, 0.45);
+  border: 1px solid alpha(@accent, 0.12);
+  border-radius: 15px;
+  padding: 0 14px;
+  margin: 3px 3px;
+}
+
+/* ── Left: workspaces ───────────────────────────────────── */
+#workspaces { padding: 0 4px; }
+
+#workspaces button {
+  color: @comment;
+  background: transparent;
+  border-radius: 12px;
+  padding: 0 10px;
+  margin: 3px 2px;
+  transition: all 0.2s ease;
+}
+#workspaces button:hover {
+  background: alpha(@accent, 0.20);
+  color: @fg;
+}
+#workspaces button.focused,
+#workspaces button.active {
+  background: @accent;
+  color: @bg;
+}
+#workspaces button.urgent {
+  background: @urgent;
+  color: @bg;
+}
+
+/* ── Left: focused window title ─────────────────────────── */
+#window {
+  color: @accent;
+}
+window#waybar.empty #window {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+    min-width: 0;
+    min-height: 0;
+}
+/* ── Center ─────────────────────────────────────────────── */
+#custom-relogio {
+  color: @accent;
+  padding: 0 18px;
+}
+
+/* ── Right ── */
+#wireplumber     { color: @cyan; }
+#wireplumber.muted { color: @comment; }
+#cpu            { color: @green; }
+#memory         { color: @magenta; }
+#network        { color: @blue; }
+
+#tray { padding: 0 10px; }
+
+#custom-power {
+  color: @urgent;
+  padding: 0 12px;
+  font-size: 15px;
+}
+#custom-power:hover { background: alpha(@urgent, 0.25); }
+#tray > .passive { -gtk-icon-effect: dim; }
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background: alpha(@urgent, 0.35);
+}

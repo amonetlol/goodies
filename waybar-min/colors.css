@@ -1,0 +1,14 @@
+/* Base2Tone Space (Gogh) — troque as cores aqui */
+@define-color bg      #24242E;
+@define-color bg2     #333342;
+@define-color fg      #A1A1B5;
+@define-color accent  #EC7336;
+@define-color accent2 #7676F4;
+@define-color urgent  #F37B3F;
+@define-color red     #7676F4;
+@define-color green   #EC7336;
+@define-color yellow  #FE8C52;
+@define-color blue    #767693;
+@define-color magenta #EC7336;
+@define-color cyan    #8A8AAD;
+@define-color comment #5B5B76;

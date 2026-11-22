@@ -17,3 +17,13 @@
 - [rofi-vicinae](rofi-vicinae/): menus de rofi no modelo StratOS Vicinae com a paleta Lumon (launcher, energia, layouts, atalhos, rede, resolução, wallpaper, configurações). Previews: rofi-vicinae/preview/.
 
 - [waybar-omunchy](waybar-omunchy/): waybar no estilo Omarchy (pílulas), versões v1 e v2, com data em pt-BR e clima (wttr.in). Previews: waybar-omunchy/v1 e v2/preview.png.
+
+- [waybar-min](waybar-min/): waybar compacta (base Oak-conf/swaywm-rice) para niri: menu, workspaces, relógio pt-BR, rede, energia e volume. Preview: waybar-min.png.
+
+- [waybar-medium](waybar-medium/): waybar em cápsulas (base diinki retrofuture) para niri: menu + workspaces à esquerda; rede, volume, tray e hora à direita. Preview: waybar-medium.png.
+
+- [waybar-full](waybar-full/): waybar completa (base swaydots) para niri: título da janela, relógio com calendário pt-BR de 3 meses, CPU, memória, rede, tray, volume e energia. Preview: waybar-full.png.
+
+- [waybar-full-min](waybar-full-min/): waybar em faixa (base atrskv) para niri: workspaces só com número, clima pela cidade do IP (wttr.in), memória, CPU, volume, data "dom, 22/11", rede e energia. Preview: waybar-full-min.png.
+
+- [waybar-island](waybar-island/): a full-min em 3 ilhas (esquerda, centro e direita em cápsulas sobre fundo transparente). Preview: waybar-island.png.

@@ -1,0 +1,47 @@
+// waybar FULL (base shadowofdominance/swaydots) — tema Base2Tone Space (Gogh); cores em colors.css
+{
+  "layer": "top",
+  "position": "top",
+  "height": 42,
+  "margin-top": 6,
+  "margin-left": 10,
+  "margin-right": 10,
+  "spacing": 0,
+  "modules-left": ["niri/workspaces", "niri/window"],
+  "modules-center": ["custom/relogio"],
+  "modules-right": ["cpu", "memory", "network", "tray", "wireplumber", "custom/power"],
+  "niri/workspaces": { "format": "{index}", "disable-scroll": false, "all-outputs": false },
+  "niri/window": { "format": "{title}", "max-length": 40, "tooltip": true },
+  "custom/relogio": {
+    "exec": "$HOME/.config/waybar/scripts/relogio.py '  %H:%M  •  %a, %d/%m'",
+    "return-type": "json",
+    "interval": 30,
+    "tooltip": true
+  },
+  "wireplumber": {
+    "format": "{icon}  {volume}%",
+    "format-muted": "  mudo",
+    "format-icons": ["", "", ""],
+    "scroll-step": 5,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "pwvucontrol",
+    "tooltip-format": "{node_name}\nVolume: {volume}%"
+  },
+  "cpu": { "format": "  {usage}%", "interval": 2, "on-click": "kitty -e btop" },
+  "memory": {
+    "format": "  {used:0.1f}G",
+    "tooltip-format": "{used:0.1f} GiB / {total:0.1f} GiB  ({percentage}%)\nSwap: {swapUsed:0.1f} / {swapTotal:0.1f} GiB",
+    "interval": 5,
+    "on-click": "kitty -e btop"
+  },
+  "network": {
+    "format-ethernet": "󰀂  {ipaddr}",
+    "format-wifi": "󰤨  {essid}",
+    "format-disconnected": "󰤮  sem rede",
+    "tooltip-format": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "interval": 3,
+    "on-click": "nm-connection-editor"
+  },
+  "tray": { "icon-size": 18, "spacing": 10, "show-passive-items": true },
+  "custom/power": { "format": "⏻", "tooltip-format": "Menu de energia", "on-click": "wlogout" }
+}
