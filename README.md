@@ -2,6 +2,8 @@
 
 - [Kitty Tab](kitty-tab/): Kitty com abas, painéis, tema Vviva e guia de atalhos em Rofi.
 
+- [poly-min-01](poly-min-01/): polybar minimalista no canto superior esquerdo para xmonad (tema Espresso): hora, data pt-BR, volume, workspaces em dots redondos e ícone + layout (_XMONAD_LOG). Preview: poly-min-01.png.
+
 - [polybar-02](polybar-02/): polybar (mino29/arch-i3, tokyo-night) adaptada p/ qtile/EWMH, Nerd Font v3. Preview: polybar-02.png.
 
 - [waybar-tokyonight-cool](waybar-tokyonight-cool/): waybar em pilhas (azul Tokyo Night/Frappe, variantes dark, light e transparent) para MangoWM: layout do mango, drawers expandidos e botao de energia. Preview: waybar-tokyonight-cool/dark, light e transparent/preview/bar.png.
